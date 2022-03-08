@@ -41,3 +41,17 @@ class game_list:
 
 #board = game_list(file_words,4)
 #board.create_tab()
+
+def x_board(num_cards):
+    x_b = pd.DataFrame(np.array([["X" for i in range(0, num_cards)], ["X" for i in range(0, num_cards)]]), index=["A", "B"],
+                       columns=[i for i in range(1, num_cards +1)])
+    return x_b
+
+def word_board(num_cards):
+    w_b = game_list(file_words,num_cards)
+    random.shuffle(w_b.create_tab())
+    w_b2 = pd.DataFrame(np.array([[w_b.create_tab()[i] for i in range(0, num_cards)], [w_b.create_tab()[i] for i in range(num_cards, 2*num_cards)]]), index=["A", "B"],
+                      columns=[i for i in range(1, num_cards+1)])
+    return w_b2
+
+print(word_board(4))
