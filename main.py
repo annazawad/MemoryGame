@@ -71,6 +71,7 @@ def game(x_board,word_board,num_quess,num_cards):
             row_1 = str(input("Enter the row: \n"))
             col_1 = int(input("Enter the col: \n"))
             x_board.at[row_1, col_1] = word_board.at[row_1, col_1]
+
             print(x_board)
             row_2 = str(input("Enter the row: \n"))
             col_2 = int(input("Enter the col: \n"))
@@ -111,6 +112,7 @@ while choice != 3:
     vx_board = x_board(num_cards)
     vword_board = word_board(num_cards)
     W = game(vx_board,vword_board, num_guess, num_cards)
+
     if W[0]:
         print("YOU WON \n")
         duration = datetime.datetime.now() - start
