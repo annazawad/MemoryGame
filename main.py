@@ -54,4 +54,4 @@ def word_board(num_cards):
                       columns=[i for i in range(1, num_cards+1)])
     return w_b2
 
-print(word_board(4))
+print(word_board(6))
