@@ -5,6 +5,8 @@ import datetime
 from datetime import date
 
 file_words = "words.txt"
+winner = pd.read_csv("winners.csv")
+winnerHard = pd.read_csv("winnersH.csv")
 
 """def game_list(file):
     tab = []
@@ -101,3 +103,59 @@ def game(x_board,word_board,num_quess,num_cards):
 #vx_board = x_board(num_cards)
 #vword_board = word_board(num_cards)
 #game(vx_board,vword_board,num_quess,num_cards)
+
+choice = 0
+while choice != 3:
+    start = datetime.datetime.now()
+    choice = int(input("Choose the level\n 1 - EASY\n 2 - DIFFICULT\n 3- quit the game\n"))
+    if choice == 1:
+        num_cards = 2
+        num_guess = 6
+    elif choice == 2:
+        num_cards = 4
+        num_guess = 16
+    elif choice == 3:
+        print("Thank you")
+        break
+    else:
+        print("Choose from avaiable choices")
+        continue
+    vx_board = x_board(num_cards)
+    vword_board = word_board(num_cards)
+    W = game(vx_board,vword_board, num_guess, num_cards)
+    if W[0]:
+        print("YOU WON \n")
+        duration = datetime.datetime.now() - start
+        today = date.today()
+        print(f"It took you {W[1]} chances and {duration.seconds} seconds to win.")
+        name = input("What's your name?: ")
+        df5 = pd.DataFrame([[name, W[1],duration.seconds,today]], columns=['name','chances','time','date'])
+        if choice == 1:
+            winner = pd.concat([winner,df5], ignore_index=True)
+            winner = winner.nsmallest(10,"chances")
+            winner.to_csv("winners.csv")
+            print(winner[['name','chances','time','date']])
+        else:
+            winnerHard = pd.concat([winnerHard, df5], ignore_index=True)
+            winnerHard = winnerHard.nsmallest(10, "chances")
+            winnerHard.to_csv("winnersH.csv")
+            print(winnerHard[['name', 'chances', 'time', 'date']])
+        stay = input(print("Do you want to restart the game (y/n) ?: "))
+        if stay == 'y':
+            continue
+        else:
+            break
+    else:
+        print("GAME OVER \n")
+        if choice ==1:
+            winner = winner.nsmallest(10, "chances")
+            print('See the list of best scores:\n \n', winner[['name','chances','time','date']])
+        else:
+            winnerHard = winnerHard.nsmallest(10, "chances")
+            print('See the list of best scores:\n \n', winnerHard[['name', 'chances', 'time', 'date']])
+        stay = input(print("Do you want to restart the game (y/n) ?: "))
+        if stay == 'y':
+            continue
+        else:
+            print("GOODBYE!")
+            break
