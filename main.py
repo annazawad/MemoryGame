@@ -8,18 +8,6 @@ file_words = "words.txt"
 winner = pd.read_csv("winners.csv")
 winnerHard = pd.read_csv("winnersH.csv")
 
-"""def game_list(file):
-    tab = []
-    for line in open(file,'r'):
-        tab.append(line)
-    k = len(tab)
-    i = 0
-    while i< k:
-        tab[i] = tab[i].replace("\n","")
-        i +=1
-    return tab
-print(game_list(file_words))"""
-
 class game_list:
     def __init__(self,file,num_cards):
         self.file = file
