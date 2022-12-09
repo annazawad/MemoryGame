@@ -1,4 +1,6 @@
 # MemoryGame
+LEARNING BY DOING
+
 2 levels of game
 I started 'programming' (huge word;) ) about 3 months ago and I felt in love. Of course, it's no more love of the first sight - there are more and more moments that I want to drop it
  facing the fact I won't be doing it for living. After a while I'm coming back and starting all over, so it must be love:) I know this particular course isn't for me because of lack
